@@ -105,8 +105,10 @@ export class WorkPackageTableFilters extends WorkPackageTableBaseState<QueryFilt
     return _.reject(this.currentFilters, (filter) => invisibleFilters.has(filter.id));
   }
 
-  public get anyCurrentlyVisibleFilters():boolean {
-    return this.currentlyVisibleFilters.length > 0;
+  public get isSecondSpacerVisible():boolean {
+    return _.reject(this.current, (filter) => {
+      return (filter.id === 'search');
+    }).length > 0;
   }
 
   private get currentFilters() {
